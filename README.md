@@ -5,22 +5,36 @@ a class for easy creation of metaboxes  in wordpress
 
 Initializion:
 
-new SMC_Metabox(
- Metabox_ID // string,
- Metabox_LABEL // string,
- Post_Type // string: "Blog", "Page", or Custom Post Type,
- Metabox Configuration // array, see blow
- Post Label // String (will be used in error messages)
-)
+new SMC_Metabox(Metabox_ID, Metabox_LABEL, Metabox_Configuration, Post_Label )
 
 
-the $metabox_config array:
+ - Metabox_ID // string
+
+ - Metabox_LABEL // string
+
+ - Post_Type // string: "Blog", "Page", or Custom Post Type
+
+ - Metabox_Configuration // array, see blow
+
+ - Post_Label // String (will be used in error messages)
+
+
+
+
+the Metabox_Configuration array:
+
   0 = ID // string
+
   1 = Label //  string
+
   2 = Type // string: "input" | "select" | "check" | "radio"
+
   3 = Validation  // string: "required" | empty
+
   4 = Options: defines  options for select, check and radio types:
+
            array( array( "option-key" => "option-value"))
+
 
 
  Example initialization:
