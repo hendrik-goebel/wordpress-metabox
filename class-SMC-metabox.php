@@ -14,12 +14,6 @@
  *
  *          array( array( "option-key" => "option-value"))
  * 
- * 
- * 
- * 
- * 
- *  
- * 
  */
 
 class SMC_Metabox {
@@ -45,20 +39,16 @@ class SMC_Metabox {
 
         add_action('add_meta_boxes', array($this, 'add_meta_boxes'));
         add_action('save_post', array($this, 'save_metabox_data'));
-
         add_filter('post_updated_messages', array($this, 'generate_messages'));
     }
 
     public function add_meta_boxes()
     {
-
-
         add_meta_box($this->id, $this->title, array($this, 'display_meta_boxes'), $this->post_type, $this->context, $this->priority);
     }
 
     public function display_meta_boxes()
     {
-
         global $post;
         $data = array();
         $data[$this->id . '_meta_nonce'] = wp_create_nonce(wp_create_nonce($this->id . "-meta"));
@@ -83,9 +73,12 @@ class SMC_Metabox {
             switch ($item[2])
             {
                 case 'input':
+                    
                     $output .= '<td><input class="widefat" name="' . $item[0] . '" id="' . $item[0] . '" type="text" value="' . $value . '" /></td>';
                     break;
+                
                 case 'select':
+                    
                     $output .= '<td><select class="widefat" name="' . $item[0] . '" id="' . $item[0] . '">';
 
                     foreach ($item[4] as $option_key => $option_value)
@@ -95,8 +88,11 @@ class SMC_Metabox {
                     }
                     $output .= '</td>';
                     break;
+                    
                 case 'check':
+                    
                     $output .= '<td>';
+                    
                     foreach ($item[4] as $option_key => $option_value)
                     {
                         if (strpos($value, $option_key) !== false)
@@ -112,6 +108,7 @@ class SMC_Metabox {
                     break;
 
                 case 'radio':
+                    
                     $output .= '<td>';
 
                     $i = 0;
@@ -126,12 +123,15 @@ class SMC_Metabox {
                         $output .= '<input  ' . $checked . ' type="radio" class="widefat" name="' . $item[0] . '" value="' . $option_key . '">' . $option_value . '</br>';
                         $i++;
                     }
+                    
                     $output .= '</td>';
                     break;
             }
             $output .= '</tr>';
         }
+        
         $output .= '</table>';
+        
         echo $output;
     }
 
@@ -141,6 +141,7 @@ class SMC_Metabox {
         $this->error_message = get_transient("product_error_message_$post->ID");
         $message_no = isset($_GET['message']) ? $_GET['message'] : '0';
         delete_transient("product_error_message_$post->ID");
+        
         if (!empty($this->error_message))
         {
             $messages[$this->post_type] = array("$message_no" => $this->error_message);
@@ -155,7 +156,6 @@ class SMC_Metabox {
 
         if ($this->post_type == $_POST['post_type'] && current_user_can('edit_post', $post->ID))
         {
-
             $this->error_message = '';
             $data = array();
 
@@ -182,6 +182,7 @@ class SMC_Metabox {
             {
                 update_post_meta($post->ID, $item_key, $item_value);
             }
+            
             if (!empty($this->error_message))
             {
 
@@ -194,5 +195,4 @@ class SMC_Metabox {
             }
         }
     }
-
 }
