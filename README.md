@@ -39,7 +39,7 @@ the Metabox_Configuration array:
 
  Example initialization:
 
-      $metabox = array(
+      $metabox_config= array(
 
             array('smc-name', __('Name'), 'input'),
             array('smc-lastname', __('Last Name'), 'input', 'required'),
@@ -63,6 +63,6 @@ the Metabox_Configuration array:
                 ))
         );
 
-        $metabox = new SMC_Metabox('SMC_metabox', __('Product Attributes'), $this->post_type, $metabox, 'Product');
+        $metabox = new SMC_Metabox('SMC_metabox', __('Product Attributes'), $this->post_type, $metabox_config 'Product');
 
 

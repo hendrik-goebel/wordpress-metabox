@@ -54,9 +54,9 @@ class SMC_Metabox {
         $data[$this->id . '_meta_nonce'] = wp_create_nonce(wp_create_nonce($this->id . "-meta"));
 
         $data = array();
-        // Get the existing values from database
-
+        
         $output = '<table class="form-table">';
+        
         foreach ($this->metabox_config as $item)
         {
             $value = get_post_meta($post->ID, $item[0], true);
@@ -97,7 +97,7 @@ class SMC_Metabox {
                     {
                         if (strpos($value, $option_key) !== false)
                         {
-                            $checked = 'checked="checked""';
+                            $checked = 'checked="checked"';
                         }
                         else
                             $checked = '';
