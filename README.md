@@ -63,7 +63,7 @@ the Metabox_Configuration array:
                 ))
         );
 
-        $metabox = new SMC_Metabox('SMC_metabox', __('Product Attributes'), "Post", $metabox_config 'Product');
+        $metabox = new SMC_Metabox('SMC_metabox', __('Product Attributes'), 'post', $metabox_config, 'advanced', 'high');
 </pre>
 
 

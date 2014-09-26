@@ -1,4 +1,5 @@
 <?php
+
 /**
  * A class for easy creation of metaboxes in wordpress
  * @author Hendrik Göbel
@@ -24,18 +25,19 @@ class SMC_Metabox {
     private $id;
     private $context;
     private $priority;
-    private $post_name;
     private $error_message;
 
-    public function __construct($id, $title = 'Attributes', $post_type, $metabox_config, $context = 'advanced', $priority = 'default', $post_name = 'Product')
+    public function __construct($id, $title = 'Attributes', $post_type, $metabox_config, $context = 'advanced', $priority = 'high')
     {
+
+		
         $this->post_type = $post_type;
         $this->id = $id;
         $this->metabox_config = $metabox_config;
         $this->title = $title;
         $this->context = $context;
         $this->priority = $priority;
-        $this->post_name = $post_name;
+
 
         add_action('add_meta_boxes', array($this, 'add_meta_boxes'));
         add_action('save_post', array($this, 'save_metabox_data'));
@@ -44,19 +46,23 @@ class SMC_Metabox {
 
     public function add_meta_boxes()
     {
+	
         add_meta_box($this->id, $this->title, array($this, 'display_meta_boxes'), $this->post_type, $this->context, $this->priority);
+		
     }
 
     public function display_meta_boxes()
     {
         global $post;
+			
+		
         $data = array();
         $data[$this->id . '_meta_nonce'] = wp_create_nonce(wp_create_nonce($this->id . "-meta"));
-
+		
         $data = array();
-        
+        // Get the existing values from database
+	
         $output = '<table class="form-table">';
-        
         foreach ($this->metabox_config as $item)
         {
             $value = get_post_meta($post->ID, $item[0], true);
@@ -97,7 +103,7 @@ class SMC_Metabox {
                     {
                         if (strpos($value, $option_key) !== false)
                         {
-                            $checked = 'checked="checked"';
+                            $checked = 'checked="checked""';
                         }
                         else
                             $checked = '';
@@ -132,6 +138,7 @@ class SMC_Metabox {
         
         $output .= '</table>';
         
+
         echo $output;
     }
 
@@ -190,7 +197,7 @@ class SMC_Metabox {
                 $post->post_status = "draft";
                 wp_update_post($post);
                 add_action('save_post', array($this, 'save_metabox_data'));
-                $this->error_message = __('Product creation failed.<br/>') . $this->error_message;
+                $this->error_message = __('Saving failed.<br/>') . $this->error_message;
                 set_transient("product_error_message_$post->ID", $this->error_message, 60 * 10);
             }
         }
