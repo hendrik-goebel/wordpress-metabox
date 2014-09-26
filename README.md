@@ -20,11 +20,11 @@ Create a new instance of the SMC_Metabox Class:
 
 A Metabox is an array which holds several metafields. A single metafield is again an numerical array, which has the followong settings:
 
-  0 = ID (string) The unique id of the field
-  1 = Label (string) The label of the field, visible to the user
-  2 = Type (string) The type of the html component. Possible values are:  "input" | "select" | "check" | "radio"
-  3 = Validation (string) Currently only possible values: "required" | empty
-  4 = Options (array) Defines options for select, check and radio types: array( array( "option-key" => "option-value"))
+- 0 = ID (string) The unique id of the field
+- 1 = Label (string) The label of the field, visible to the user
+- 2 = Type (string) The type of the html component. Possible values are:  "input" | "select" | "check" | "radio"
+- 3 = Validation (string) Currently only possible values: "required" | empty
+- 4 = Options (array) Defines options for select, check and radio types: array( array( "option-key" => "option-value"))
 
  <h3>Example initialization:</h3>
 <pre>
