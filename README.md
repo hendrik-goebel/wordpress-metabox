@@ -3,9 +3,9 @@ wordpress-metabox
 
 a class for easy creation of metaboxes  in wordpress
 
-Initializion:
+<h3>Initializion:</h3>
 
-new SMC_Metabox(Metabox_ID, Metabox_LABEL, Metabox_Configuration, Post_Label )
+<pre>new SMC_Metabox(Metabox_ID, Metabox_LABEL, Metabox_Configuration, Post_Label )</pre>
 
 
  - Metabox_ID // string
@@ -37,8 +37,8 @@ the Metabox_Configuration array:
 
 
 
- Example initialization:
-
+ <h3>Example initialization:</h3>
+<pre>
       $metabox_config= array(
 
             array('smc-name', __('Name'), 'input'),
@@ -63,6 +63,7 @@ the Metabox_Configuration array:
                 ))
         );
 
-        $metabox = new SMC_Metabox('SMC_metabox', __('Product Attributes'), $this->post_type, $metabox_config 'Product');
+        $metabox = new SMC_Metabox('SMC_metabox', __('Product Attributes'), "Post", $metabox_config 'Product');
+</pre>
 
 
